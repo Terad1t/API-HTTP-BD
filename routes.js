@@ -1,8 +1,7 @@
 const http = require("http");
-const connection = require("./db"); // sua conexão MySQL
+const connection = require("./db");
 
 const server = http.createServer((req, res) => {
-  // GET /pedidos → listar produtos
   if (req.url === "/pedidos" && req.method === "GET") {
     connection.query("SELECT * FROM produtos", (err, results) => {
       if (err) {
