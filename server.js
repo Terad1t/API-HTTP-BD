@@ -1,5 +1,5 @@
 const http = require("http");
-const connection = require("./db"); // sua conexão MySQL
+const connection = require("./db");
 
 const server = http.createServer((req, res) => {
   // GET /pedidos
