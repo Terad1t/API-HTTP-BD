@@ -1,10 +1,26 @@
-CREATE DATABASE loja_perifericos;
+CREATE DATABASE IF NOT EXISTS loja_perifericos;
 USE loja_perifericos;
 
-CREATE TABLE produtos (
+CREATE TABLE IF NOT EXISTS produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(80),
-    preco DECIMAL(10, 2)
+    nome VARCHAR(80) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pedidos (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    total DECIMAL(10, 2) NOT NULL,
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS pedido_itens (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  pedido_id INT NOT NULL,
+  produto_id INT NOT NULL,
+  preco DECIMAL(10,2) NOT NULL,
+
+  FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+  FOREIGN KEY (produto_id) REFERENCES produtos(id)
 );
 
 INSERT INTO produtos (nome, preco) VALUES
@@ -12,5 +28,7 @@ INSERT INTO produtos (nome, preco) VALUES
 ('ATTACK SHARK X85', 350.00),
 ('REDRAGON ZEUS PRO', 280.00);
 
-USE loja_perifericos;
-SELECT * FROM produtos;
+SELECT COUNT(*) FROM pedidos;
+
+SELECT * FROM pedidos;
+SELECT * FROM pedido_itens;
