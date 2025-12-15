@@ -31,7 +31,6 @@ O objetivo principal foi:
 ---
 
 ## 🗂️ Estrutura do Projeto
-
 .
 ├── controllers/
 │ └── pedidosController.js
